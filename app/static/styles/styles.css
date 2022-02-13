@@ -9,8 +9,11 @@
 }
 
 body {
-    color: white;
-    background-color: rgb(32, 32, 32);
+    font: 'Ariel', 'sans-serif';
+}
+
+a {
+    color: black;
 }
 
 

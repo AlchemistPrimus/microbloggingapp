@@ -63,3 +63,8 @@ class PostForm(FlaskForm):
     #Enabling markdown post form
     body=PageDownField('What is on your mind?',validators=[DataRequired()])
     submit=SubmitField('Submit')
+    
+#Comment input form
+class CommentForm(FlaskForm):
+    body=StringField('',validators=[DataRequired()])
+    submit=SubmitField('Submit')
