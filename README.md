@@ -6,3 +6,4 @@ Administrators type of users who can regulate the content users post and manage 
 Content moderators are type of users that can moderate the contents of the microblogs on top of what all other usrers can do except for admins
 regular users can create, update or delete microblog posts; they can follow other users, and be followed back. They can also view posts(for other users and theirs)
 anonymous users can only view posts by regular regustered users but cannot follow, create or edit post.
+Users can also create or comment on other users posts.
