@@ -1,3 +1,5 @@
+/*global stylings*/
+
 :root {
     box-sizing: border-box;
 }
@@ -12,8 +14,9 @@ body {
     font: 'Ariel', 'sans-serif';
 }
 
-a {
-    color: black;
+.nav-tabs>li,
+.post-author>a {
+    color: blue !important;
 }
 
 
@@ -146,6 +149,9 @@ ul li:hover {
     }
 }
 
+
+/*posts styling*/
+
 .posts {
     display: flex;
     flex-direction: column;
@@ -154,6 +160,7 @@ ul li:hover {
 .post {
     flex: 1;
     padding: 1.2em;
+    align-items: left;
 }
 
 .pagination {

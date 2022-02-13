@@ -15,8 +15,6 @@
         <nav>
             <ul>
                 <li><a href="{{url_for('main.home')}}">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/about">About</a></li>
                 {% if current_user.can(Permission.MODERATE) %}
                 <li><a href="{{ url_for('main.moderate') }}">Moderate Comments</a></li>
                 {% endif %}
@@ -34,9 +32,7 @@
         <div class="bar2"></div>
         <div class="bar3"></div>
             <ul class="mobile-menu">
-                <li><a href="/home">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="{{url_for('main.home')}}">Home</a></li>
                 {% if current_user.can(Permission.MODERATE) %}
                 <li><a href="{{ url_for('main.moderate') }}">Moderate Comments</a></li>
                 {% endif %}

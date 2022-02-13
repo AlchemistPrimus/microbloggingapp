@@ -1,6 +1,8 @@
 from datetime import datetime
 from flask import session,render_template,url_for,redirect,request,flash,abort,current_app, make_response
 from flask_login import login_user, login_required,logout_user,current_user
+from flask_sqlalchemy import get_debug_queries
+import werkzeug
 import sys
 sys.path.insert(0,'/home/ado/Desktop/microblog')
 from app.main import main
@@ -10,6 +12,25 @@ from app.main import auth
 from app import db
 from app.emails import send_email
 from app.decorators import permission_required, admin_required
+
+
+@main.after_app_request
+def after_request(response):
+    for query in get_debug_queries():
+        if query.duration >= current_app.config['MICROBLOG_SLOW_DB_QUERY_TIME']:
+            current_app.logger.warning('Slow query: %s\nParameters: %s\nDuration: %fs\nContext: %s\n'% (query.statement, query.parameters, query.duration, query.context))
+    return response
+
+
+@main.route('/shutdown')
+def server_shutdown():
+    if not current_app.testing:
+        abort(404)
+    shutdown = request.environ.get('werkzeug.server.shutdown')
+    if not shutdown:
+        abort(500)
+    shutdown()
+    return 'Shutting down...'
 
 @main.route('/',methods=['GET','POST'])
 @main.route('/home',methods=['GET','POST'])
@@ -36,7 +57,7 @@ def home():
     pagination = Post.query.order_by(Post.timestamp.desc()).paginate(page,per_page=current_app.config['MICROBLOG_POSTS_PER_PAGE'], error_out=False)
     posts = pagination.items
     
-    return render_template('index.html',form=form,name=session.get('name'),known=session.get('known',False),current_time=datetime.utcnow(),posts=posts,show_followed=show_followed, pagination=pagination)
+    return render_template('index.html',form=form,posts=posts,show_followed=show_followed, pagination=pagination)
 
 
 #enabling permanent links to posts and blog post comment support
@@ -71,8 +92,10 @@ def login():
             next=request.args.get('next')
             if next is None or not next.startswith('/'):
                 next=url_for('main.home')
+                return redirect(next)
             return redirect(next)
         flash("Invalid username or password")
+        return redirect(url_for('main.login'))
     else:
         return render_template('auth/login.html',form=form)
     
@@ -207,7 +230,7 @@ def edit_profile_admin(id):
 @main.route('/edit/<int:id>',methods=['GET','POST'])
 @login_required
 def edit(id):
-    post=Post.query.get_or_404()
+    post=Post.query.get_or_404(id)
     if current_user != post.author and not current_user.can(Permission.ADMIN):
         abort(403)
         
