@@ -22,7 +22,7 @@
         {% endif %}
     </div>
     <div class="post-tabs">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs bg-dark">
             <li{% if not show_followed %} class="active"{% endif %}><a href="{{ url_for('main.show_all') }}">All</a></li>
             {% if current_user.is_authenticated %}
             <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('main.show_followed') }}">Followed</a></li>
@@ -35,6 +35,7 @@
         {{ macros.pagination_widget(pagination, 'main.home') }}
     </div>
     {% endif %}
+    {{super()}}
 {% endblock %}
 
 {% block scripts %}

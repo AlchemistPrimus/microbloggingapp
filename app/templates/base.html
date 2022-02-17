@@ -12,6 +12,7 @@
 {%block navbar%}
     <header>
         <div id="brand"><a href="{{url_for('main.home')}}">RevBlog.com</a></div>
+        
         <nav>
             <ul>
                 {% if current_user.can(Permission.MODERATE) %}
@@ -26,6 +27,11 @@
                 {%endif%}
             </ul>
         </nav>
+        {%if current_user.is_authenticated%}
+        <div class="profile-thumbnail">
+            <a href="{{ url_for('main.user', username=current_user.username) }}"><img class="img-circle profile-thumbnail" src="{{ current_user.gravatar(size=40) }}"></a>
+        </div>
+        {%endif%}
         <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
         <div class="bar1"></div>
         <div class="bar2"></div>
@@ -54,4 +60,8 @@
 {%endblock%}
 
 {%block content%}
+
+{%block footer%}
+<p class="text-center">Adonijah Industries&trade;</p>
+{%endblock%}
 {%endblock%}

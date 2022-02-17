@@ -14,11 +14,6 @@ body {
     font: 'Ariel', 'sans-serif';
 }
 
-.nav-tabs>li,
-.post-author>a {
-    color: blue !important;
-}
-
 
 /*Stylings for navigation bar*/
 
@@ -168,4 +163,13 @@ ul li:hover {
     flex-direction: row;
     justify-content: center;
     width: auto;
+}
+
+.post-author>a {
+    color: blue !important;
+}
+
+.profile-thumbnail {
+    margin-right: -5.5em;
+    padding-top: .2em;
 }
