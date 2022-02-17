@@ -1,17 +1,44 @@
 /*global stylings*/
 
-:root {
+ :root {
     box-sizing: border-box;
 }
 
 *,
-::before,
-::after {
+ ::before,
+ ::after {
     box-sizing: inherit;
 }
 
 body {
     font: 'Ariel', 'sans-serif';
+}
+
+.HomePage {
+    display: block;
+    padding: 2em;
+}
+
+.MainHeading {
+    font-size: 3.5rem;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 600;
+    color: purple;
+}
+
+.MainDesc {
+    font-weight: 600;
+}
+
+.MainDescCont {
+    font-size: 1.8rem;
+    font-weight: 580;
+    font-family: 'Asap Condensed', sans-serif;
+}
+
+.ReviewHeading {
+    padding: 1rem 1rem 0 1rem;
+    border-bottom: 2px solid blue;
 }
 
 
@@ -189,6 +216,7 @@ ul li:hover {
     display: flex;
     flex-direction: row;
     padding: .3em;
+    justify-content: center;
 }
 
 .IndexInput {
@@ -201,4 +229,64 @@ ul li:hover {
 .nav-tabs {
     background: rgba(0, 57, 83, 0.637);
     border-bottom: 2px solid rgb(7, 197, 172);
+}
+
+.ProductImage {
+    width: auto;
+    height: auto;
+}
+
+.details {
+    display: block;
+}
+
+.ItemClass {
+    display: block;
+    padding: 1.5em;
+}
+
+
+/*Monitor stylings*/
+
+@media (min-width:560px) {
+    header>.profile-thumbnail {
+        display: none;
+    }
+    .IndexInput {
+        width: 60%;
+    }
+    .MainIndex {
+        display: flex;
+        flex-direction: row;
+        padding: .3em;
+        justify-content: center;
+    }
+    .posts {
+        display: flex;
+        max-width: 50%;
+        flex-direction: column;
+        justify-content: left;
+    }
+    .post {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+    }
+    .ItemClass {
+        display: block;
+        padding-right: 1.5em;
+    }
+    .RevClass {
+        padding-left: 1em;
+    }
+    .ProductImage {
+        width: 400px;
+        height: auto;
+    }
+    .details {
+        display: block;
+    }
+    .ProductFig {
+        display: block;
+    }
 }
