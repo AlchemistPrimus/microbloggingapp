@@ -92,7 +92,7 @@ ul li:hover {
 }
 
 #hamburger-icon div {
-    width: 35px;
+    width: 30px;
     height: 3px;
     background-color: #555fb4;
     margin: 6px 0;
@@ -156,13 +156,15 @@ ul li:hover {
     flex: 1;
     padding: 1.2em;
     align-items: left;
+    border-bottom: 2px solid rgb(7, 197, 172);
 }
 
 .pagination {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: auto;
+    width: 20%;
+    padding: 1em;
 }
 
 .post-author>a {
@@ -170,6 +172,33 @@ ul li:hover {
 }
 
 .profile-thumbnail {
-    margin-right: -5.5em;
+    margin-right: -5em;
     padding-top: .2em;
+}
+
+
+/*Index current user profile styling*/
+
+.IndexProfile {
+    display: flex;
+    flex-direction: column;
+    padding: .5em;
+}
+
+.MainIndex {
+    display: flex;
+    flex-direction: row;
+    padding: .3em;
+}
+
+.IndexInput {
+    padding: .3em;
+}
+
+
+/*styling nav tabs*/
+
+.nav-tabs {
+    background: rgba(0, 57, 83, 0.637);
+    border-bottom: 2px solid rgb(7, 197, 172);
 }
