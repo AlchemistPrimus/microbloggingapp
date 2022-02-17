@@ -9,6 +9,11 @@
     <div class="container">
         {%if current_user.is_authenticated%}
             <h2>Hello,<a href="{{url_for('main.user',username=current_user.username)}}">{{current_user.username}}</a></h2>
+            <p>Hello {{current_user.username}} you can start posting your reviews. Describe what you want to be reviewed.</p>
+            <p>If you are an influencer, recommend products to your audience.</p>
+            <p>Grab the best deal with reviewed items. Vote products to promote provision of quality products in the market.</p>
+        {%else%}
+            <p>Hello, this is the first place to visit before buying a product. See reviews and what other users say about the product. Grab the best deals and the best products available. Make good use of your money.</p>
         {%endif%}
     </div>
     <div>

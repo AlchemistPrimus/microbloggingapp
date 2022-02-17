@@ -29,7 +29,7 @@ header a {
 
 header {
     padding: 0 20px;
-    background-color: rgb(2, 15, 73);
+    background-color: rgb(236, 239, 253);
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -99,7 +99,7 @@ ul li:hover {
 #hamburger-icon div {
     width: 35px;
     height: 3px;
-    background-color: white;
+    background-color: #555fb4;
     margin: 6px 0;
     transition: 0.4s;
 }

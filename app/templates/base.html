@@ -1,7 +1,7 @@
 {% extends "bootstrap/base.html"%}
 
 {%block title%}
-    {% if title%}{{title}}|Microblog{%else%}Microblog.com{%endif%}
+    {% if title%}{{title}}|RevBlog{%else%}RevBlog.com{%endif%}
 {%endblock%}
 
 {%block styles%}
@@ -11,10 +11,9 @@
 
 {%block navbar%}
     <header>
-        <div id="brand"><a href="{{url_for('main.home')}}">MicroBlog</a></div>
+        <div id="brand"><a href="{{url_for('main.home')}}">RevBlog.com</a></div>
         <nav>
             <ul>
-                <li><a href="{{url_for('main.home')}}">Home</a></li>
                 {% if current_user.can(Permission.MODERATE) %}
                 <li><a href="{{ url_for('main.moderate') }}">Moderate Comments</a></li>
                 {% endif %}

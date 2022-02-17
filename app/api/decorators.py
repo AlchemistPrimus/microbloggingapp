@@ -1,0 +1,15 @@
+from functools import wraps
+import sys
+sys.path.insert(0,'/home/ado/Desktop/microblog')
+from app.api.errors import forbidden
+
+
+def permission_required(permission):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args,**kwargs):
+            if not g.current_user.can(permission):
+                return forbidden('Insufficient Permissions')
+            return f(*args,**kwargs)
+        return decorated_function
+    return decorator

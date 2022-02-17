@@ -3,7 +3,7 @@
 
 {%block content%}
     <!--Adding gravatar image to the template-->
-    <img class="img-rounded profile-thumbnail" src="{{user.gravatar(size=256)}}"
+    <img class="img-circle profile-thumbnail" src="{{user.gravatar(size=256)}}"
     <div class="page-header">
         <h1>{{ user.username }}</h1>
         {% if user.name or user.location %}

@@ -4,11 +4,12 @@ from app import db,login_manager
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import UserMixin,AnonymousUserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from flask import current_app, request
+from flask import current_app, request,url_for
 from datetime import datetime
 import hashlib
 from markdown import markdown
 import bleach
+from app.exceptions import ValidationError
 
 #Follows association table as a model
 class Follow(db.Model):
@@ -28,13 +29,32 @@ class Post(db.Model):
     #One to many relationship
     comments=db.relationship('Comment',backref='post',lazy='dynamic')
     
-    
+    #converting post to a json serializable dictionary(serializing resources to and from JSON)
+    def to_json(self):
+        json_post={
+            'url': url_for('api.get_post', id=self.id),
+            'body': self.body,
+            'body_html': self.body_html,
+            'timestamp': self.timestamp,
+            'author_url': url_for('api.get_user', id=self.author_id),
+            'comments_url': url_for('api.get_post_comments', id=self.id),
+            'comment_count': self.comments.count()
+            }
+        return json_post
         
     @staticmethod
     def on_change_body(target,value,oldvalue,initiator):
         #Renders html version of the body and stores it in body_html effectively making the conversion of the markdown fully automatic
         allowed_tags=['a', 'abbr', 'acronym', 'b', 'blockquote', 'code','em', 'i', 'li', 'ol', 'pre', 'strong', 'ul','h1', 'h2', 'h3', 'p']
         target.body_html=bleach.linkify(bleach.clean(markdown(value,output_format='html'),tags=allowed_tags,strip=True))
+        
+    #creating a blog post from json
+    @staticmethod
+    def from_json(json_post):
+        body = json_post.get('body')
+        if body is None or body == '':
+            raise ValidationError('post does not have a body')
+        return Post(body=body)
         
 #registering on_change_body function on sqlalchemy's 'set' event for body hence it will be automatically invoked whenever body field is set to new value
 db.event.listen(Post.body,'set',Post.on_change_body)
@@ -171,6 +191,32 @@ class User(UserMixin,db.Model):
     @property
     def followed_posts(self):
         return Post.query.join(Follow,Follow.followed_id==Post.author_id).filter(Follow.follower_id==self.id)
+    
+    #Token based authentication support
+    def generate_auth_token(self,expiration):
+        s=Serializer(current_app.config['SECRET_KEY'],expires_in=expiration)
+        return s.dumps({'id':self.id}).decode('utf-8')
+    @staticmethod
+    def verify_auth_token(token):
+        s=Serializer(current_app.config['SECRET_KEY'])
+        try:
+            data=s.loads(token)
+        except:
+            return None
+        return User.query.get(data['id'])
+    
+    #converting user to a json serializable dictionary
+    def to_json(self):
+        json_user={'url': url_for('api.get_user', id=self.id),
+            'username': self.username,
+            'member_since': self.member_since,
+            'last_seen': self.last_seen,
+            'posts_url': url_for('api.get_user_posts', id=self.id),
+            'followed_posts_url': url_for('api.get_user_followed_posts',
+            id=self.id),
+            'post_count': self.posts.count()
+            }
+        return json_user
         
         
 class AnonymousUser(AnonymousUserMixin):
