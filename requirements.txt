@@ -30,8 +30,6 @@ Flask-HTTPAuth==3.2.3
 webencodings==0.5.1
 html5lib==0.999999999
 gunicorn==19.7.1
-
--r common.txt
 certifi==2017.7.27.1
 chardet==3.0.4
 coverage==4.4.1
