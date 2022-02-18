@@ -41,6 +41,12 @@ body {
     border-bottom: 2px solid blue;
 }
 
+.footer {
+    color: white;
+    background-color: rgb(66, 60, 107);
+    padding: 3em;
+}
+
 
 /*Stylings for navigation bar*/
 
@@ -154,7 +160,7 @@ ul li:hover {
     left: 0;
     height: calc(100vh - 50px);
     width: 100%;
-    background-color: rgb(2, 15, 73);
+    background-color: rgb(24, 30, 58);
     z-index: 2;
 }
 
@@ -289,4 +295,29 @@ ul li:hover {
     .ProductFig {
         display: block;
     }
+    /*Form stylings*/
+    .AuthBody {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .Form {
+        width: 40%;
+    }
+}
+
+
+/*Login stylings*/
+
+.AuthBody {
+    background: url("../Media/bg.jpg");
+    background-color: rgba(160, 174, 216, 0.623);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
+.Form {
+    padding: 0 3em 3em 3em;
 }

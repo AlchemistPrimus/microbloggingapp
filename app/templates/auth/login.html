@@ -4,10 +4,21 @@
 {%block title%} Microblog-Login{%endblock%}
 
 {%block content%}
-<div class="page-header">
-    <h1>Login</h1>
+
+<div class="AuthBody">
+    <div class="HomePage">
+        <h1><span class="MainHeading">ItsAdonijah.com</span></h1>
+        <h3><span class="MainDesc">Get your choice!</span></h3>
+        <p><span class="MainDescCont">We help you grab the best products and services online.<br><a href="{{url_for('main.login')}}">Login</a> to continue. <a href="{{url_for('main.register')}}">Sign up</a> if you don't have an account. </p>
+    </div>
+    <div class="Form">
+        <div class="FormHeader">
+            <h1><span class="FormTitle">Login</h1>
+        </div>
+        <div class="Formform">
+            {{wtf.quick_form(form)}}
+        </div>
+    </div>
 </div>
-<div class="col-md-4">
-    {{wtf.quick_form(form)}}
-</div>
+{{super()}}
 {%endblock%}

@@ -64,10 +64,11 @@ class User(UserMixin,db.Model):
     __tablename__='users'
     id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     email=db.Column(db.String(64),unique=True,index=True)
-    name=db.Column(db.String(64))
     username=db.Column(db.String(64),unique=True,index=True)
     password_hash=db.Column(db.String(128))
     confirmed=db.Column(db.Boolean,default=False)
+    name=db.Column(db.String(64))
+    profile=db.Column(db.String(20),nullable=True)
     location=db.Column(db.String(64))
     about_me=db.Column(db.Text())
     member_since=db.Column(db.DateTime(),default=datetime.utcnow)

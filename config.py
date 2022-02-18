@@ -19,6 +19,7 @@ class Config:
     MICROBLOG_FOLLOWERS_PER_PAGE = 50
     MICROBLOG_COMMENTS_PER_PAGE = 30
     MICROBLOG_SLOW_DB_QUERY_TIME = 0.5
+    UPLOAD_FOLDER='images'
     
     @staticmethod
     def init_app(app):
