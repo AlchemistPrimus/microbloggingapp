@@ -1,5 +1,8 @@
 import os
 basedir=os.path.abspath(os.path.dirname(__file__))
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Config:
     SECRET_KEY=os.environ.get('SECRET_KEY') or 'hard-to-guess-string'
@@ -9,7 +12,7 @@ class Config:
     MAIL_USERNAME=os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD')
     MICROBLOG_MAIL_SUBJECT_PREFIX='[MICROBLOG]'
-    MICROBLOG_MAIL_SENDER='Microblog admin <microblog@example.com>'
+    MICROBLOG_MAIL_SENDER='Microblog admin <microblogadmin@gmail.com>'
     MICROBLOG_ADMIN=os.environ.get('MICROBLOG_ADMIN')
     SQLALCHEMY_TRACK_MODIFICATIONS=False
     MICROBLOG_POSTS_PER_PAGE=25
