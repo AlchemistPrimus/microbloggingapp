@@ -1,3 +1,4 @@
+
 import sys
 sys.path.insert(0,'/home/ado/Desktop/microblog')
 from app import db,login_manager
@@ -274,7 +275,12 @@ class Role(db.Model):
             role.default=(role.name==default_role)
             db.session.add(role)
         db.session.commit()
-                
+class Permission:
+    FOLLOW=1
+    COMMENT=2
+    WRITE=4
+    MODERATE=8
+    ADMIN=16              
                 
 #Comment model
 class Comment(db.Model):
@@ -296,12 +302,7 @@ class Comment(db.Model):
 db.event.listen(Comment.body,'set',Comment.on_change_body)
             
             
-class Permission:
-    FOLLOW=1
-    COMMENT=2
-    WRITE=4
-    MODERATE=8
-    ADMIN=16
+
 
 @login_manager.user_loader
 def load_user(user_id):
