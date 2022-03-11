@@ -28,9 +28,9 @@
             <div class="HomePage">
                 <h1><span class="MainHeading">ItsAdonijah.com</span></h1>
                 <h3><span class="MainDesc">Get your choice!</span></h3>
-                <p><span class="MainDescCont">We help you grab good products and services online. Get reviews from product consumers here.
+                <p><span class="MainDescCont">We help you grab good products and services online. Comment on products here.
                     
-                <br>To post or comment on a product <a href="{{url_for('main.register')}}">sign up</a> or <a href="{{url_for('main.login')}}">login</a> if you have an account</span> </p>
+                <br>To post or comment on a product <a href="{{url_for('main.register')}}">sign up</a>, or <a href="{{url_for('main.login')}}">login</a> if you have an account</span> </p>
             </div>
         {%endif%}
     </div>
@@ -43,31 +43,34 @@
             <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('main.show_followed') }}">Followed</a></li>
             {% endif %}
         </ul>
-        <div class="row">
-            <div class="col-md-5 col-sm-12">
+        <div class="bodyContent">
+            <div class="col1">
                 <div class="ItemClass">
-                    <div class="ProductFig">
-                        <h3><span class="ReviewHeading">Product</span></h3>
-                        <figure>
-                            <img src="{{url_for('static',filename='Media/gaming_laptop.jpeg')}}" class="img-responsive ProductImage">
-                            <figcaption><b>HP Omen 16 Gaming Laptop</b></figcaption>
-                        </figure>
-                    </div>
-                    <div class="ProductDetails">
-                        <ul class="list list-unstyled details">
-                            <li>Core i7-11800H</li>
-                            <li>512GB SSD</li>
-                            <li>16GB RAM</li>
-                            <li>NVIDIA® RTX 3060 6GB</li>
-                        </ul>
-                    </div>
-                    <div class="ProductDescription">
-                        <p>Hello peeps.I'm looking for the best gaming laptop in town. HP Omen one of the few beasts I trust. Its super fast with ssd and 16 GB RAM DDR4. It comes with graphics card for high performance.<br>What's your view on the product?</p>
+                    <div class="ProductFig colFormat">
+                        <h3><span class="ReviewHeading">Product Details</span></h3>
+                        <div class="card ProductCard">
+                            <img class="card-img-top img-responsive ProductImage" src="{{url_for('static',filename='Media/gaming_laptop.jpeg')}}">
+                            <div class="card-block cardBody">
+                                <h4 class="card-title">Gaming laptop-HP Omen</h4>
+                                <ul class="card-text list list-unstyled details">
+                                    <li>core i7-11800H</li>
+                                    <li>512GB SSD</li>
+                                    <li>16GB RAM</li>
+                                    <li>NVIDIA® RTX 3060 6gb</li>
+                                </ul>
+                                <div class="card-text ProductDescription">
+                                    <p>Hello peeps.I'm looking for the best gaming laptop in town. HP Omen one of the few beasts I trust. Its super fast with ssd and 16 GB RAM DDR4. It comes with graphics card for high performance.<br>What's your view on the product?</p>
+                                </div>
+                                <a class="btn btn-success grabDealBtn">Grab the deal</a>
+                                <div class="clearfix"></div>
+                            </div>
+                            <h5 class="card-footer">posted 2hrs ago</h5>
+                        </div> 
                     </div>
                 </div>
             </div>
-            <div class="col-md-7 col-sm-12">
-                <div class="RevClass">
+            <div class="col2">
+                <div class="RevClass colFormat">
                     <h3><span class="ReviewHeading">Reviews</span></h3>
                     {% include '_posts.html' %}
                     {% if pagination %}

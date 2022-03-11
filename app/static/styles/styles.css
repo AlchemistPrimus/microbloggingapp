@@ -36,6 +36,13 @@ body {
     font-family: 'Asap Condensed', sans-serif;
 }
 
+.colFormat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .ReviewHeading {
     padding: 1rem 1rem 0 1rem;
     border-bottom: 2px solid blue;
@@ -183,20 +190,26 @@ ul li:hover {
 .posts {
     display: flex;
     flex-direction: column;
+    justify-content: left;
+    padding-top: 2em;
 }
 
 .post {
+    max-width: 90%;
     flex: 1;
-    padding: 1.2em;
+    padding: 1em;
     align-items: left;
     border-bottom: 2px solid rgb(7, 197, 172);
+    box-shadow: 4px -6px 12px 2px rgba(0, 0, 0, 0.65);
+    -webkit-box-shadow: 4px -6px 12px 2px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 4px -6px 12px 2px rgba(0, 0, 0, 0.65);
 }
 
 .pagination {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 20%;
+    width: 100%;
     padding: 1em;
 }
 
@@ -238,8 +251,14 @@ ul li:hover {
 }
 
 .ProductImage {
-    width: auto;
+    width: 100%;
     height: auto;
+    object-fit: cover;
+    border-radius: .7em .7em 0 0;
+}
+
+.grabDealBtn {
+    float: right;
 }
 
 .details {
@@ -249,6 +268,45 @@ ul li:hover {
 .ItemClass {
     display: block;
     padding: 1.5em;
+}
+
+
+/*image card post stylings*/
+
+.ProductCard {
+    max-width: 90%;
+    border-radius: .7em;
+    box-shadow: 5px 6px 12px 2px rgba(0, 0, 0, 0.65);
+    -webkit-box-shadow: 5px 6px 12px 2px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 5px 6px 12px 2px rgba(0, 0, 0, 0.65);
+}
+
+.cardBody {
+    padding: .5em 2em .5em 2em;
+}
+
+.card-footer {
+    padding: 0 1em 1em 1em;
+}
+
+
+/*Login stylings*/
+
+.AuthBody {
+    background: url("../Media/bg.jpg");
+    background-color: rgba(160, 174, 216, 0.623);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
+.Form {
+    padding: 0 3em 3em 3em;
+}
+
+.bodyContent {
+    display: block;
 }
 
 
@@ -267,12 +325,6 @@ ul li:hover {
         padding: .3em;
         justify-content: center;
     }
-    .posts {
-        display: flex;
-        max-width: 50%;
-        flex-direction: column;
-        justify-content: left;
-    }
     .post {
         display: flex;
         flex-direction: column;
@@ -280,20 +332,14 @@ ul li:hover {
     }
     .ItemClass {
         display: block;
-        padding-right: 1.5em;
-    }
-    .RevClass {
-        padding-left: 1em;
-    }
-    .ProductImage {
-        width: 400px;
-        height: auto;
+        padding-right: 0;
     }
     .details {
         display: block;
     }
-    .ProductFig {
-        display: block;
+    .bodyContent {
+        display: flex;
+        padding: 0 1em 0 1em;
     }
     /*Form stylings*/
     .AuthBody {
@@ -304,20 +350,7 @@ ul li:hover {
     .Form {
         width: 40%;
     }
-}
-
-
-/*Login stylings*/
-
-.AuthBody {
-    background: url("../Media/bg.jpg");
-    background-color: rgba(160, 174, 216, 0.623);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-blend-mode: darken;
-}
-
-.Form {
-    padding: 0 3em 3em 3em;
+    .formBody {
+        margin: 0 auto;
+    }
 }
